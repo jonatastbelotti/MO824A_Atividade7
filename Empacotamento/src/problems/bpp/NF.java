@@ -1,19 +1,17 @@
-package problems.qbf;
+package problems.bpp;
 
 import java.util.ArrayList;
 import java.util.List;
-import problems.bpp.Item;
-import problems.bpp.Mochila;
 
 /**
  *
  * @author Jônatas Trabuco Belotti [jonatas.t.belotti@hotmail.com]
  * @author Felipe de Carvalho Pereira [felipe.pereira@students.ic.unicamp.br]
  */
-public class FF {
+public class NF {
     private List<Mochila> mochilas = null;
 
-    public FF(String nomeArquivo) {
+    public NF(String nomeArquivo) {
         Item.carregarArquivo(nomeArquivo);
         this.mochilas = new ArrayList<>();
     }
@@ -52,7 +50,7 @@ public class FF {
     }
     
     public static void main(String[] args) {
-        FF ff = new FF("./bpp_instances/instance0.bpp");
+        NF ff = new NF("./bpp_instances/instance0.bpp");
         
         ff.solve();
         
