@@ -9,7 +9,7 @@ import java.util.List;
  * @author Felipe de Carvalho Pereira [felipe.pereira@students.ic.unicamp.br]
  */
 public class NF {
-    private List<Mochila> mochilas = null;
+    protected List<Mochila> mochilas = null;
 
     public NF(String nomeArquivo) {
         Item.carregarArquivo(nomeArquivo);
@@ -50,7 +50,12 @@ public class NF {
     }
     
     public static void main(String[] args) {
-        NF ff = new NF("./bpp_instances/instance0.bpp");
+        String arquivo = "./bpp_instances/instance0.bpp";
+        
+        System.out.println("Algoritmo Next Fit");
+        System.out.println("Arqivo " + arquivo);
+        
+        NF ff = new NF(arquivo);
         
         ff.solve();
         
