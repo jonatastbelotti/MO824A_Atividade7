@@ -216,7 +216,7 @@ public abstract class AbstractGRASP<E> {
                 bestSol = createFullSol(incumbentSol);
 
                 if (verbose) {
-                    System.out.println("(Iter. " + i + ") BestSol = " + bestSol);
+                    System.out.println("(Iter. " + i + ") (Tim. " + ((System.currentTimeMillis() - tempoInicial) / 1000D) + "s) BestSol = " + bestSol);
                 }
             }
         }

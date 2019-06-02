@@ -113,6 +113,10 @@ public class GRASP_BPP extends AbstractGRASP<Item> {
 
             for (Item i1 : incumbentSol) {
                 for (Item i2 : incumbentSol) {
+                    if (i1.equals(i2)) {
+                        continue;
+                    }
+
                     double deltaCost = ObjFunction.evaluateChangeCost(i1, i2, incumbentSol);
 
                     if (deltaCost < minDelta) {
@@ -147,8 +151,8 @@ public class GRASP_BPP extends AbstractGRASP<Item> {
         Integer TEMPO_SEGUNDOS = 60 * 10;
 
         arquivo = "./bpp_instances/instance0.bpp";
-//        arquivo = "./bpp_instances/instance1.bpp";
-//        arquivo = "./bpp_instances/instance2.bpp";
+        arquivo = "./bpp_instances/instance1.bpp";
+        arquivo = "./bpp_instances/instance2.bpp";
 //        arquivo = "./bpp_instances/instance3.bpp";
 //        arquivo = "./bpp_instances/instance4.bpp";
 //        arquivo = "./bpp_instances/instance5.bpp";
@@ -165,7 +169,7 @@ public class GRASP_BPP extends AbstractGRASP<Item> {
         long endtTime = System.currentTimeMillis();
 
         System.out.println("maxVal = " + bestSol.descCompleta());
-        
+
         System.out.println("Tempo de execução: " + ((endtTime - startTime) / 1000D) + " segundos");
 
     }

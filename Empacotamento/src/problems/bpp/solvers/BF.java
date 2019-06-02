@@ -1,6 +1,8 @@
 package problems.bpp.solvers;
 
 import java.util.ArrayList;
+import problems.bpp.Item;
+import problems.bpp.Mochila;
 
 /**
  *
@@ -15,7 +17,26 @@ public class BF extends NF {
 
     @Override
     public void solve() {
+        Mochila m;
         this.mochilas = new ArrayList<>();
+
+        for (Item item : Item.getItens()) {
+            m = null;
+
+            for (Mochila mochila : this.mochilas) {
+                if (mochila.cabeItem(item) && (m == null || (m != null && mochila.getEspacoResidual() > m.getEspacoResidual()))) {
+                    m = mochila;
+                }
+            }
+
+            if (m == null) {
+                m = new Mochila();
+                this.mochilas.add(m);
+            }
+
+            m.addItem(item);
+
+        }
     }
 
     public static void main(String[] args) {
