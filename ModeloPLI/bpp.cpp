@@ -52,6 +52,7 @@ int main (int argc, char *argv[])
 	input_path = argv[1];
 	input_file = fopen(input_path.c_str(), "r");
 
+
 	load_N_C(input_file, &N, &C);
 	int weights[N];
 
@@ -59,6 +60,8 @@ int main (int argc, char *argv[])
 	
 	double beg_time_opt = CPUTIME(grb_ruse);
 	double end_time_opt;
+
+	cout << endl << endl << input_path << endl << endl;
 
 	// Gurobi environment
 	GRBEnv* env = 0;
@@ -73,8 +76,8 @@ int main (int argc, char *argv[])
 
 		// Gurobi Parameters
 		//model.set(GRB_IntParam_OutputFlag, 0); // Disable printing on console
-		model.set(GRB_IntParam_Presolve, 0); // Disable presolve algorithms
-		model.set(GRB_DoubleParam_Heuristics, 0.0); // Disable use of heuristics
+		//model.set(GRB_IntParam_Presolve, 0); // Disable presolve algorithms
+		//model.set(GRB_DoubleParam_Heuristics, 0.0); // Disable use of heuristics
 		model.set(GRB_IntParam_Threads, 1); // Define use of only one core
 		model.set(GRB_DoubleParam_TimeLimit, 600); // Define timelimit of 600s
 
@@ -122,12 +125,13 @@ int main (int argc, char *argv[])
 			model.addConstr(alloc_expr[j], GRB_EQUAL, 1);
 		}
 
+		
 		// Bins index constraints
 		for(int i = 0; i < N - 1; i++)
 		{
 			model.addConstr(bins[i + 1], GRB_LESS_EQUAL, bins[i]);
 		}
-
+		
 		// Update model to set variables and constraints
 		model.update();
 
