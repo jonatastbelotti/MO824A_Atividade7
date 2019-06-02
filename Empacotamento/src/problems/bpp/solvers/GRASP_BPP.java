@@ -11,6 +11,7 @@ import solutions.SolutionBPP;
 /**
  *
  * @author Jônatas Trabuco Belotti [jonatas.t.belotti@hotmail.com]
+ * @author Felipe de Carvalho Pereira [felipe.pereira@students.ic.unicamp.br]
  */
 public class GRASP_BPP extends AbstractGRASP<Item> {
 
@@ -151,8 +152,8 @@ public class GRASP_BPP extends AbstractGRASP<Item> {
         Integer TEMPO_SEGUNDOS = 60 * 10;
 
         arquivo = "./bpp_instances/instance0.bpp";
-        arquivo = "./bpp_instances/instance1.bpp";
-        arquivo = "./bpp_instances/instance2.bpp";
+//        arquivo = "./bpp_instances/instance1.bpp";
+//        arquivo = "./bpp_instances/instance2.bpp";
 //        arquivo = "./bpp_instances/instance3.bpp";
 //        arquivo = "./bpp_instances/instance4.bpp";
 //        arquivo = "./bpp_instances/instance5.bpp";

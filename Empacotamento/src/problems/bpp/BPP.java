@@ -6,6 +6,7 @@ import solutions.Solution;
 /**
  *
  * @author Jônatas Trabuco Belotti [jonatas.t.belotti@hotmail.com]
+ * @author Felipe de Carvalho Pereira [felipe.pereira@students.ic.unicamp.br]
  */
 public class BPP implements Evaluator<Item> {
 
@@ -91,16 +92,16 @@ public class BPP implements Evaluator<Item> {
                     m = new Mochila();
                     m.addItem(item);
                 }
-                
+
                 if (item.equals(elem1)) {
                     m1 = m;
                 }
-                
+
                 if (item.equals(elem2)) {
                     m2 = m;
                 }
             }
-            
+
             resp -= (Math.max(m1.getEspacoResidual().doubleValue(), m2.getEspacoResidual().doubleValue())) / Mochila.CAPACIDADE;
         }
 

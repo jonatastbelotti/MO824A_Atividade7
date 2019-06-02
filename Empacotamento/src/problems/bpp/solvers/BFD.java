@@ -9,9 +9,9 @@ import problems.bpp.Mochila;
  * @author Jônatas Trabuco Belotti [jonatas.t.belotti@hotmail.com]
  * @author Felipe de Carvalho Pereira [felipe.pereira@students.ic.unicamp.br]
  */
-public class BF extends NF {
+public class BFD extends NFD {
 
-    public BF(String nomeArquivo) {
+    public BFD(String nomeArquivo) {
         super(nomeArquivo);
     }
 
@@ -45,7 +45,7 @@ public class BF extends NF {
         System.out.println("Algoritmo Best Fit");
         System.out.println("Arqivo " + arquivo);
 
-        BF ff = new BF(arquivo);
+        BFD ff = new BFD(arquivo);
 
         ff.solve();
 

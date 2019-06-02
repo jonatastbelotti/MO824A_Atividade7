@@ -9,9 +9,9 @@ import problems.bpp.Mochila;
  * @author Jônatas Trabuco Belotti [jonatas.t.belotti@hotmail.com]
  * @author Felipe de Carvalho Pereira [felipe.pereira@students.ic.unicamp.br]
  */
-public class FF extends NF {
+public class FFD extends NFD {
 
-    public FF(String nomeArquivo) {
+    public FFD(String nomeArquivo) {
         super(nomeArquivo);
     }
 
@@ -45,7 +45,7 @@ public class FF extends NF {
         System.out.println("Algoritmo First Fit");
         System.out.println("Arqivo " + arquivo);
 
-        FF ff = new FF(arquivo);
+        FFD ff = new FFD(arquivo);
 
         ff.solve();
 
