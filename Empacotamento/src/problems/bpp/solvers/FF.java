@@ -1,6 +1,8 @@
 package problems.bpp.solvers;
 
 import java.util.ArrayList;
+import problems.bpp.Item;
+import problems.bpp.Mochila;
 
 /**
  *
@@ -15,11 +17,30 @@ public class FF extends NF {
 
     @Override
     public void solve() {
+        Mochila m;
         this.mochilas = new ArrayList<>();
+
+        for (Item item : Item.getItens()) {
+            m = null;
+
+            for (Mochila mochila : this.mochilas) {
+                if (mochila.cabeItem(item)) {
+                    m = mochila;
+                    break;
+                }
+            }
+
+            if (m == null) {
+                m = new Mochila();
+                this.mochilas.add(m);
+            }
+
+            m.addItem(item);
+        }
     }
 
     public static void main(String[] args) {
-        String arquivo = "./bpp_instances/instance0.bpp";
+        String arquivo = "./bpp_instances/instance9.bpp";
 
         System.out.println("Algoritmo First Fit");
         System.out.println("Arqivo " + arquivo);

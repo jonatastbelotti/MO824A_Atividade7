@@ -40,7 +40,7 @@ public class BF extends NF {
     }
 
     public static void main(String[] args) {
-        String arquivo = "./bpp_instances/instance0.bpp";
+        String arquivo = "./bpp_instances/instance9.bpp";
 
         System.out.println("Algoritmo Best Fit");
         System.out.println("Arqivo " + arquivo);
