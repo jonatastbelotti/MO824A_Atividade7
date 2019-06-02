@@ -11,6 +11,7 @@ import java.util.List;
 public class Mochila {
 
     public static int CAPACIDADE;
+    public static int N;
 
     private List<Item> itens;
     private int espacoResidual;
@@ -19,21 +20,27 @@ public class Mochila {
         this.itens = new ArrayList<>();
         this.espacoResidual = Mochila.CAPACIDADE;
     }
-    
+
     public boolean addItem(Item item) {
-        if (this.espacoResidual < item.getSize()) {
+        if (!this.cabeItem(item)) {
             return false;
         }
-        
+
         this.itens.add(item);
         this.espacoResidual -= item.getSize();
         return true;
     }
-    
+
+    public boolean cabeItem(Item item) {
+        return this.espacoResidual >= item.getSize();
+    }
+
     public List<Item> getItens() {
         return this.itens;
     }
-    
-    
+
+    public Integer getEspacoResidual() {
+        return espacoResidual;
+    }
 
 }

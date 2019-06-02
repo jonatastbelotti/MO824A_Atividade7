@@ -1,7 +1,9 @@
-package problems.bpp;
+package problems.bpp.solvers;
 
 import java.util.ArrayList;
 import java.util.List;
+import problems.bpp.Item;
+import problems.bpp.Mochila;
 
 /**
  *

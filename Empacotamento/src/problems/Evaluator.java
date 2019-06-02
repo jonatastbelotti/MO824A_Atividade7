@@ -66,5 +66,7 @@ public interface Evaluator<E> {
      * @return the cost variation resulting from the elements exchange.
      */
     public abstract Double evaluateExchangeCost(E elemIn, E elemOut, Solution<E> sol);
+    
+    public abstract Double evaluateChangeCost(E elem1, E elem2, Solution<E> sol);
 
 }

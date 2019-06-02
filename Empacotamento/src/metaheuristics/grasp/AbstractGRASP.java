@@ -1,3 +1,6 @@
+/**
+ *
+ */
 package metaheuristics.grasp;
 
 import java.util.ArrayList;
@@ -57,15 +60,14 @@ public abstract class AbstractGRASP<E> {
     protected Solution<E> incumbentSol;
 
     /**
-     * tempo para execução do GRASP.
+     * the number of maxIterations the GRASP main loop executes.
      */
-    protected Integer tempoExecucao;
+    protected Integer maxIterations;
 
     /**
-     * Quantidade de iterações sem melhora para considerar a convergễncia do
-     * GRASP.
+     *
      */
-    protected Integer iteraConvengencia;
+    protected Integer maxTime;
 
     /**
      * the Candidate List of elements to enter the solution.
@@ -125,14 +127,15 @@ public abstract class AbstractGRASP<E> {
      * @param objFunction The objective function being minimized.
      * @param alpha The GRASP greediness-randomness parameter (within the range
      * [0,1])
-     * @param iterations The number of iterations which the GRASP will be
+     * @param iterations The number of maxIterations which the GRASP will be
      * executed.
+     * @param time
      */
-    public AbstractGRASP(Evaluator<E> objFunction, Double alpha, Integer tempoExecucao, Integer iteraConvengencia) {
+    public AbstractGRASP(Evaluator<E> objFunction, Double alpha, Integer iterations, Integer time) {
         this.ObjFunction = objFunction;
         this.alpha = alpha;
-        this.tempoExecucao = tempoExecucao;
-        this.iteraConvengencia = iteraConvengencia;
+        this.maxIterations = iterations;
+        this.maxTime = time;
     }
 
     /**
@@ -144,12 +147,10 @@ public abstract class AbstractGRASP<E> {
      */
     public Solution<E> constructiveHeuristic() {
 
-        incumbentSol = createEmptySol();
-        incumbentCost = Double.POSITIVE_INFINITY;
-
         CL = makeCL();
         RCL = makeRCL();
-
+        incumbentSol = createEmptySol();
+        incumbentCost = Double.POSITIVE_INFINITY;
 
         /* Main loop, which repeats until the stopping criteria is reached. */
         while (!constructiveStopCriteria()) {
@@ -158,21 +159,15 @@ public abstract class AbstractGRASP<E> {
             incumbentCost = ObjFunction.evaluate(incumbentSol);
             updateCL();
 
-            if (CL.isEmpty()) {
-                break;
-            }
-
             /*
             * Explore all candidate elements to enter the solution, saving the
             * highest and lowest cost variation achieved by the candidates.
              */
             for (E c : CL) {
                 Double deltaCost = ObjFunction.evaluateInsertionCost(c, incumbentSol);
-
                 if (deltaCost < minCost) {
                     minCost = deltaCost;
                 }
-
                 if (deltaCost > maxCost) {
                     maxCost = deltaCost;
                 }
@@ -184,7 +179,6 @@ public abstract class AbstractGRASP<E> {
              */
             for (E c : CL) {
                 Double deltaCost = ObjFunction.evaluateInsertionCost(c, incumbentSol);
-
                 if (deltaCost <= minCost + alpha * (maxCost - minCost)) {
                     RCL.add(c);
                 }
@@ -208,33 +202,22 @@ public abstract class AbstractGRASP<E> {
      * through the constructive heuristic and local search. The best solution is
      * returned as result.
      *
-     * @return The best feasible solution obtained throughout all iterations.
+     * @return The best feasible solution obtained throughout all maxIterations.
      */
     public Solution<E> solve() {
-        long tempoInicial, iteracao;
+        long tempoInicial = System.currentTimeMillis();
+
         bestSol = createEmptySol();
-        int iteracoesSemMelhora = 0;
-
-        tempoInicial = System.currentTimeMillis();
-        iteracao = 1;
-        while ((((System.currentTimeMillis() - tempoInicial) / 1000) / 60) <= this.tempoExecucao) {
-            iteracao++;
-            iteracoesSemMelhora++;
-
+        for (int i = 0; i < maxIterations && ((System.currentTimeMillis() - tempoInicial) / 1000D) < this.maxTime; i++) {
             constructiveHeuristic();
             localSearch();
 
-            if (bestSol.cost > incumbentSol.cost) {
-                bestSol = new Solution<E>(incumbentSol);
-                iteracoesSemMelhora = 0;
+            if (incumbentSol.cost < bestSol.cost) {
+                bestSol = createFullSol(incumbentSol);
 
                 if (verbose) {
-                    System.out.println("(Iter. " + iteracao + ") BestSol = " + bestSol);
+                    System.out.println("(Iter. " + i + ") BestSol = " + bestSol);
                 }
-            }
-
-            if (this.iteraConvengencia > 0 && iteracoesSemMelhora > this.iteraConvengencia) {
-                break;
             }
         }
 
@@ -250,6 +233,10 @@ public abstract class AbstractGRASP<E> {
      */
     public Boolean constructiveStopCriteria() {
         return (incumbentCost > incumbentSol.cost) ? false : true;
+    }
+
+    protected Solution<E> createFullSol(Solution<E> sol) {
+        return new Solution<>(sol);
     }
 
 }

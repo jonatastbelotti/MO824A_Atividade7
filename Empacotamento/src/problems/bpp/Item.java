@@ -2,6 +2,7 @@ package problems.bpp;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class Item {
     private static List<Item> listaItens = null;
     private static int N;
 
-    private int id;
-    private int size;
+    private final int id;
+    private final int size;
 
     public Item(int id, int size) {
         this.id = id;
@@ -39,6 +40,7 @@ public class Item {
             BufferedReader lerArq = new BufferedReader(arq);
 
             Item.N = Integer.parseInt(lerArq.readLine());
+            Mochila.N = Item.N;
             Mochila.CAPACIDADE = Integer.parseInt(lerArq.readLine());
 
             String linha = lerArq.readLine();
@@ -46,18 +48,23 @@ public class Item {
                 Item.listaItens.add(new Item(Item.listaItens.size(), Integer.parseInt(linha)));
                 linha = lerArq.readLine();
             }
-        } catch (Exception e) {
+        } catch (IOException | NumberFormatException e) {
             System.out.println("Erro ao ler arquivo:" + e.getMessage());
         }
 
     }
-    
+
     public static int getNumItens() {
         return Item.N;
     }
-    
+
     public static List<Item> getItens() {
         return Item.listaItens;
+    }
+
+    @Override
+    public String toString() {
+        return "" + this.id;
     }
 
 }
