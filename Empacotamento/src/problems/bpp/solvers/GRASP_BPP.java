@@ -223,7 +223,7 @@ public class GRASP_BPP<E> extends AbstractGRASP<Item> {
 
     public static void main(String[] args) {
         String arquivo;
-        Double ALPHA = 0.5D;
+        Double ALPHA = 0.05D;
         Integer NUM_ITERACOES = 1000000;
         Integer TEMPO_SEGUNDOS = 60 * 10;
 
@@ -240,10 +240,10 @@ public class GRASP_BPP<E> extends AbstractGRASP<Item> {
 
         System.out.println("Algoritmo GRASP para a instancia " + arquivo);
 
-        //System.out.println("Conctruction mechanism: STANDARD");
-        //GRASP_BPP grasp = new GRASP_BPP(arquivo, ALPHA, NUM_ITERACOES, TEMPO_SEGUNDOS, STANDARD);
-        System.out.println("Conctruction mechanism: SAMPLED GREEDY");
-        GRASP_BPP grasp = new GRASP_BPP(arquivo, ALPHA, NUM_ITERACOES, TEMPO_SEGUNDOS, SAMPLED_GREEDY);
+        System.out.println("Conctruction mechanism: STANDARD");
+        GRASP_BPP grasp = new GRASP_BPP(arquivo, ALPHA, NUM_ITERACOES, TEMPO_SEGUNDOS, STANDARD);
+//        System.out.println("Conctruction mechanism: SAMPLED GREEDY");
+//        GRASP_BPP grasp = new GRASP_BPP(arquivo, ALPHA, NUM_ITERACOES, TEMPO_SEGUNDOS, SAMPLED_GREEDY);
 
         long startTime = System.currentTimeMillis();
         Solution<Item> bestSol = grasp.solve();
