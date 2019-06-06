@@ -223,16 +223,16 @@ public class GRASP_BPP<E> extends AbstractGRASP<Item> {
 
     public static void main(String[] args) {
         String arquivo;
-        Double ALPHA = 0.05D;
+        Double ALPHA = 0.10D;
         Integer NUM_ITERACOES = 1000000;
         Integer TEMPO_SEGUNDOS = 60 * 10;
 
         arquivo = "./bpp_instances/instance0.bpp";
-//        arquivo = "./bpp_instances/instance1.bpp";
-//        arquivo = "./bpp_instances/instance2.bpp";
-//        arquivo = "./bpp_instances/instance3.bpp";
-//        arquivo = "./bpp_instances/instance4.bpp";
-//        arquivo = "./bpp_instances/instance5.bpp";
+        arquivo = "./bpp_instances/instance1.bpp";
+        arquivo = "./bpp_instances/instance2.bpp";
+        arquivo = "./bpp_instances/instance3.bpp";
+        arquivo = "./bpp_instances/instance4.bpp";
+        arquivo = "./bpp_instances/instance5.bpp";
 //        arquivo = "./bpp_instances/instance6.bpp";
 //        arquivo = "./bpp_instances/instance7.bpp";
 //        arquivo = "./bpp_instances/instance8.bpp";
