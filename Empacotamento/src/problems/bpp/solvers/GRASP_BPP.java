@@ -228,15 +228,15 @@ public class GRASP_BPP<E> extends AbstractGRASP<Item> {
         Integer TEMPO_SEGUNDOS = 60 * 10;
 
         arquivo = "./bpp_instances/instance0.bpp";
-        arquivo = "./bpp_instances/instance1.bpp";
-        arquivo = "./bpp_instances/instance2.bpp";
-        arquivo = "./bpp_instances/instance3.bpp";
-        arquivo = "./bpp_instances/instance4.bpp";
-        arquivo = "./bpp_instances/instance5.bpp";
-        arquivo = "./bpp_instances/instance6.bpp";
-        arquivo = "./bpp_instances/instance7.bpp";
-        arquivo = "./bpp_instances/instance8.bpp";
-        arquivo = "./bpp_instances/instance9.bpp";
+//        arquivo = "./bpp_instances/instance1.bpp";
+//        arquivo = "./bpp_instances/instance2.bpp";
+//        arquivo = "./bpp_instances/instance3.bpp";
+//        arquivo = "./bpp_instances/instance4.bpp";
+//        arquivo = "./bpp_instances/instance5.bpp";
+//        arquivo = "./bpp_instances/instance6.bpp";
+//        arquivo = "./bpp_instances/instance7.bpp";
+//        arquivo = "./bpp_instances/instance8.bpp";
+//        arquivo = "./bpp_instances/instance9.bpp";
 
         System.out.println("Algoritmo GRASP para a instancia " + arquivo);
 
